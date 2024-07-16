@@ -9,9 +9,9 @@ app.use((req,res,next) =>{
     next();
 })
 
-app.get("/", (req,res) =>{
-    res.send("Hello world")
-})
+// app.get("/", (req,res) =>{
+//     res.send("Hello world")
+// })
 
 //DB connection
 mongoose
@@ -24,4 +24,3 @@ mongoose
 })
 .catch ((error) => console.log(error));
 
-    
