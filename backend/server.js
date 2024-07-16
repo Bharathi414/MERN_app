@@ -10,7 +10,7 @@ app.use((req,res,next) =>{
 })
 
 app.get("/", (req,res) =>{
-    res.send("Hello word")
+    res.send("Hello world")
 })
 
 //DB connection
