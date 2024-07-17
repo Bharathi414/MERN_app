@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const taskmodel = require ('../models/taskmodel')
 
 // To create a Task - POST
@@ -13,4 +14,32 @@ const createtask = async (req, res) => {
     } 
 };
 
-module.exports = {createtask}; 
+//To get all tasks - GET
+
+const gettasks = async (req,res) => {
+    try{
+        const tasks = await taskmodel.find({});
+        res.status(200).json(tasks)
+    }
+    catch (e) {
+        res.status(400).json({error: e.message})
+    }
+}
+
+// To get a single task - GET
+
+const getsingletask = async (req,res) => {
+    const {id} = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({meesage:'Task Not Found'})
+    }
+    try{
+        const singletask = await taskmodel.findbyid(id)
+        res.status(200).json(singletask)
+    }
+    catch (e){
+        res.status(400).json({error: e.message});
+    }
+};
+
+module.exports = {createtask, gettasks, getsingletask}; 
